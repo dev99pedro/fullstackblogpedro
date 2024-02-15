@@ -1,0 +1,86 @@
+.container-createpost {
+  background-color: #F0ECE5;
+  height: 100vh;
+  padding-top: 40px;
+}
+
+.createpost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  box-shadow: 0px 11px 29px -11px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  padding: 40px 0 40px 0;
+  width: 500px;
+  background-color: #3468C0;
+}
+.createpost h3 {
+  font-size: 30px;
+  color: #ffffff;
+}
+.createpost .title,
+.createpost .text {
+  font-size: 20px;
+  margin-top: 25px;
+  color: #ffffff;
+}
+.createpost input {
+  width: 400px;
+  border-radius: 7px;
+  border: none;
+  border: 1px solid #787878;
+  outline: none;
+}
+.createpost .btn-createpost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  border: 1px solid #ffffff;
+  position: relative;
+  transition: 0.3s;
+  overflow: hidden;
+  background-color: #000000;
+  cursor: pointer;
+  margin-top: 40px;
+}
+.createpost .btn-createpost::before {
+  content: "new";
+  display: block;
+  font-size: 11px;
+  width: 60px;
+  text-align: center;
+  background-color: #ffffff;
+  color: #fff;
+  padding: 7px 0 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-34%, -4px) rotate(-35deg);
+  transition: 0.3s;
+}
+.createpost .btn-createpost:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+.createpost .btn-createpost:hover::before {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+@media (max-width: 928px) {
+  .createpost {
+    width: 400px;
+  }
+  .createpost input {
+    width: 340px;
+  }
+}/*# sourceMappingURL=CreatePost.css.map */

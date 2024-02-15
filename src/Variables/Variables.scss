@@ -1,0 +1,17 @@
+$blueColor: #3468C0;
+$fontSize: 12px;
+$fontFamily: 'Arial';
+$usernamePost: #787878;
+
+
+@mixin titlePost($textAlign) {
+    font-weight: bold;
+    font-size: 27px;
+    text-align: $textAlign;
+}
+
+@mixin textPost($textAlign) {
+    font-style: italic;
+    font-size: 17px;;
+    text-align: $textAlign;
+}

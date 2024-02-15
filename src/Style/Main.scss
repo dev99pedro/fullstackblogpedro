@@ -1,0 +1,106 @@
+@import '../Variables/Variables.scss';
+
+.main-page {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding-left: 75px;
+    
+
+
+    .container-img .img {
+        height: auto;
+        width: 350px;
+        cursor: pointer;
+    }
+
+    .container-infos {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 690px;
+    }
+
+
+    .container-infos .main-title {
+        font-weight: bold;
+        font-size: 27px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .container-infos .main-text {
+        font-style: italic;
+        font-size: 17px;
+        max-width: 550px;
+    }
+
+    .container-infos .main-username {
+        color: #787878;
+
+    }
+
+    .container-infos .like-btn {
+        cursor: pointer;
+    }
+
+    .container-infos .container-likes { 
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+    }
+}
+
+
+
+@media (max-width:928px) { 
+    .main-page {
+        padding-left: 0;
+        margin: 0;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+
+        .container-infos {
+            max-width:  350px;
+        }
+
+        .container-infos .main-username {
+            font-size: 18px;
+        }
+
+        .container-infos .main-text {
+            font-size: 14px;
+        }
+
+        .container-infos .main-title {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+
+        .container-infos .main-username , .main-text, .main-title {
+            text-align: center;
+        }
+
+        .container-likes {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+
+        .container-likes img {
+            width: 40px;
+        }
+    }
+
+
+}
