@@ -1,6 +1,6 @@
 const express = require('express')
 const mysql = require('mysql')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const userRouter = express.Router()
 const { sign } = require('jsonwebtoken')
 const { validateToken } = require('../middleware/Middleware.js')
@@ -37,8 +37,7 @@ userRouter.post('/', async (req, res) => {
 
     db.query('INSERT INTO user (`username`, `password`) VALUES (?,?)', [username, hashPassword], (error, data) => {
         if (error) {
-            // res.send({ error: 'error' })
-
+            
             res.send(error)
         }
 

@@ -79,6 +79,7 @@ const Main = () => {
                         <div className="container-img">
                             <img className="img"  onClick={() => navigatePost(element.id)} src={element.img}></img>
                         </div>
+                    
                         <div className="container-infos">
                             <div>
                                 <p className="main-username" onClick={() => navigate(`userpage/${element.username}`)}>{element.username}</p>
