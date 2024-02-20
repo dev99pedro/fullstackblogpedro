@@ -4,14 +4,17 @@ import { useNavigate } from "react-router-dom"
 import '../../Style/Main.scss'
 import heart from '../../img/heart.png'
 import heart2 from '../../img/heart-2.png'
+import ModalNeedToLogin from "../ModalNeedToLogin/ModalNeedToLogin"
+
 const Main = () => {
 
     const navigate = useNavigate()
     const [listPost, setListPost] = useState([])
     const [likedPost, setLikedPost] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
     const fetchData = () => {
-        axios.get('http://localhost:3001/post').then((res) => {
+        axios.get('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post').then((res) => {
             setListPost(res.data)
 
         }).catch((error) => {
@@ -19,7 +22,7 @@ const Main = () => {
         })
 
 
-        axios.get('http://localhost:3001/like', {
+        axios.get('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/like', {
             headers: {
                 token: sessionStorage.getItem('key')
             }
@@ -45,11 +48,14 @@ const Main = () => {
 
     const handleLike = (postid, likes) => {
 
-        axios.post('http://localhost:3001/like', { postid: postid }, {
+        axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/like', { postid: postid }, {
             headers: {
                 token: sessionStorage.getItem('key')
             }
         }).then((response) => {
+            if (response.data.error) {
+                setShowModal(true)
+            }
             setListPost((res) => {
                 const newList = res.map((element) => {
                     return { ...element, likes: element.likes }
@@ -72,14 +78,17 @@ const Main = () => {
 
     return (
         <div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {showModal && <ModalNeedToLogin openCloseModal={setShowModal}></ModalNeedToLogin>}
+            </div>
             {listPost.map((element, index) => {
                 console.log(element.likes)
                 return (
-                    <div className="main-page" key={index}>
+                    <div className="main-page" key={index} >
                         <div className="container-img">
-                            <img className="img"  onClick={() => navigatePost(element.id)} src={element.img}></img>
+                            <img className="img" onClick={() => navigatePost(element.id)} src={element.img}></img>
                         </div>
-                    
+
                         <div className="container-infos">
                             <div>
                                 <p className="main-username" onClick={() => navigate(`userpage/${element.username}`)}>{element.username}</p>

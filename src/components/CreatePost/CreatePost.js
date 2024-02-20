@@ -2,8 +2,9 @@ import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import '../../Style/CreatePost.scss'
+import ModalNeedToLogin from "../ModalNeedToLogin/ModalNeedToLogin"
 const CreatePost = () => {
-
+    const [showModal, setShowModal] = useState(false)
     const [inputPost, setInputPost] = useState({
         title: '',
         text: ''
@@ -31,13 +32,18 @@ const CreatePost = () => {
 
     const createPost = () => {
         if (inputPost.title.length > 5 && inputPost.text.length > 5) {
-            navigate('/')
-            axios.post('http://localhost:3001/post/createpost', { title: inputPost.title, text: inputPost.text, img: 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png' }, {
+
+            axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post/createpost', { title: inputPost.title, text: inputPost.text, img: 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png' }, {
                 headers: {
                     token: sessionStorage.getItem('key')
                 }
             }).then((res) => {
-                return res
+                if (res.data.error) {
+                    setShowModal(true)
+                } else {
+                    navigate('/')
+                }
+
             }).catch((error) => {
                 console.log(error)
             })
@@ -50,15 +56,20 @@ const CreatePost = () => {
 
 
     return (
-        <div className="container-createpost">
-            <div className="createpost">
-                <h3>Create your post</h3>
-                <label className="title">Title of the post</label>
-                <input value={inputPost.title} name="title" onChange={handleChange} style={{ height: '30px' }} type="text"></input>
-                <label className="text">Text of the post</label>
-                <input value={inputPost.text} name="text" onChange={handleChange} style={{ height: '30px' }} type="text"></input>
-                <p style={{ color: ' #ffffff', textAlign: 'center', marginTop: ' 20px' }}>{error}</p>
-                <button className="btn-createpost" onClick={() => createPost()}>Create a Post</button>
+        <div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {showModal && <ModalNeedToLogin openCloseModal={setShowModal}></ModalNeedToLogin>}
+            </div>
+            <div className="container-createpost">
+                <div className="createpost">
+                    <h3>Create your post</h3>
+                    <label className="title">Title of the post</label>
+                    <input value={inputPost.title} name="title" onChange={handleChange} style={{ height: '30px' }} type="text"></input>
+                    <label className="text">Text of the post</label>
+                    <input value={inputPost.text} name="text" onChange={handleChange} style={{ height: '30px' }} type="text"></input>
+                    <p style={{ color: ' #ffffff', textAlign: 'center', marginTop: ' 20px' }}>{error}</p>
+                    <button className="btn-createpost" onClick={() => createPost()}>Create a Post</button>
+                </div>
             </div>
         </div>
     )

@@ -9,11 +9,12 @@ const { validateToken } = require('../middleware/Middleware.js')
 
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'new_schema'
+    host: 'us-cluster-east-01.k8s.cleardb.net',
+    user: 'b18ef4e490c3f2',
+    password: '899deff7',
+    database: 'heroku_5e61a92f5fae40c'
 })
+
 
 userRouter.get('/', validateToken, (req, res) => {
     const username = req.user.username

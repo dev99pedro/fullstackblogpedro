@@ -25,7 +25,7 @@ const Register = () => {
     const register = () => {
         if (inputs.username.length > 3 || inputs.password.length > 5) {
             navigate('/')
-            axios.post('http://localhost:3001/user', { username: inputs.username, password: inputs.password }).then((res) => {
+            axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/user', { username: inputs.username, password: inputs.password }).then((res) => {
                 console.log(res)
             }).catch((error) => {
                 console.log(error)

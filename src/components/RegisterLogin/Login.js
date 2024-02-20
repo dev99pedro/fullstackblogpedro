@@ -34,7 +34,7 @@ const Login = () => {
     
 
     const Login = () => {
-        axios.post('http://localhost:3001/user/login', { username: inputs.username, password: inputs.password }).then((res) => {
+        axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/user/login', { username: inputs.username, password: inputs.password }).then((res) => {
             if (!res.data.error) {
                 navigate('/')
                 sessionStorage.setItem('key', res.data.token)

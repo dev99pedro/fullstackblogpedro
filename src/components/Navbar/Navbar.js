@@ -20,7 +20,7 @@ const Navbar = () => {
         }
 
 
-        axios.get('http://localhost:3001/user', {
+        axios.get('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/user', {
             headers: {
                 token: sessionStorage.getItem('key')
             }

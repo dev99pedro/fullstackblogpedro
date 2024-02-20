@@ -20,41 +20,51 @@ routerLike.get('/', validateToken, (req, res) => {
 })
 
 routerLike.post('/', validateToken, (req, res) => {
-    const postid = req.body.postid
-    const userid = req.user.userid
-
-
-
-
+    const postid = req.body.postid;
+    const userid = req.user.userid;
 
     db.query('SELECT * FROM likes WHERE postid = ? AND userid = ?', [postid, userid], (error, data) => {
         if (error) {
-            res.status(500).send(error)
+            return res.status(500).send(error);
         }
 
         if (data.length > 0) {
+            // Se já existe um like, remova-o
             db.query('DELETE FROM likes WHERE postid = ? AND userid = ?', [postid, userid], (error, data) => {
                 if (error) {
-                    res.status(200).send(error)
+                    return res.status(500).send(error);
                 }
 
-                if (data) {
-                    res.send(data)
-                }
-            })
+                // Decrementar o número de curtidas na tabela post
+                db.query('UPDATE post SET likes = likes - 1 WHERE id = ?', [postid], (error, data) => {
+                    if (error) {
+                        return res.status(500).send(error);
+                    }
+
+                    // Retorna a resposta se necessário
+                    res.send(data);
+                });
+            });
         } else {
-            db.query('INSERT INTO likes (`postid`, `userid`) VALUES (?,?)', [postid, userid], (error, data) => {
+            // Se não existe um like, adicione-o
+            db.query('INSERT INTO likes (`postid`, `userid`) VALUES (?, ?)', [postid, userid], (error, data) => {
                 if (error) {
-                    res.status(200).send(error)
+                    return res.status(500).send(error);
                 }
 
-                if (data) {
-                    res.send(data)
-                }
-            })
+                // Incrementar o número de curtidas na tabela post
+                db.query('UPDATE post SET likes = likes + 1 WHERE id = ?', [postid], (error, data) => {
+                    if (error) {
+                        return res.status(500).send(error);
+                    }
+
+                    // Retorna a resposta se necessário
+                    res.send(data);
+                });
+            });
         }
-    })
-})
+    });
+});
 
 
 module.exports = routerLike
