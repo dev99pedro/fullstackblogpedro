@@ -33,7 +33,7 @@ const CreatePost = () => {
     const createPost = () => {
         if (inputPost.title.length > 5 && inputPost.text.length > 5) {
 
-            axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post/createpost', { title: inputPost.title, text: inputPost.text, img: 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png' }, {
+            axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/createpost', { title: inputPost.title, text: inputPost.text, img: 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png' }, {
                 headers: {
                     token: sessionStorage.getItem('key')
                 }

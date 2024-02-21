@@ -16,6 +16,8 @@ const db = mysql.createConnection({
 })
 
 
+
+
 userRouter.get('/', validateToken, (req, res) => {
     const username = req.user.username
     db.query('SELECT * FROM user WHERE username = ? ', username, (error, data) => {
