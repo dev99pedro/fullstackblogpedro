@@ -14,7 +14,7 @@ const Main = () => {
     const [showModal, setShowModal] = useState(false)
 
     const fetchData = () => {
-        axios.get('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post').then((res) => {
+        axios.get('https://fullstacksever-e5f01fa1c438.herokuapp.com/post').then((res) => {
             setListPost(res.data)
 
         }).catch((error) => {
@@ -22,7 +22,7 @@ const Main = () => {
         })
 
 
-        axios.get('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/like', {
+        axios.get('https://fullstacksever-e5f01fa1c438.herokuapp.com/like', {
             headers: {
                 token: sessionStorage.getItem('key')
             }
@@ -48,7 +48,7 @@ const Main = () => {
 
     const handleLike = (postid, likes) => {
 
-        axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/like', { postid: postid }, {
+        axios.post('https://fullstacksever-e5f01fa1c438.herokuapp.com/like', { postid: postid }, {
             headers: {
                 token: sessionStorage.getItem('key')
             }

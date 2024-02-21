@@ -28,7 +28,7 @@ const PostPage = () => {
 
 
     const fechData = () => {
-        axios.get(`https://pedrofullstackblog-ec342730c6c5.herokuapp.com/comment/${id}`).then((res) => {
+        axios.get(`https://fullstacksever-e5f01fa1c438.herokuapp.com/comment/${id}`).then((res) => {
             setCommentList(res.data)
 
         }).catch((error) => {
@@ -36,7 +36,7 @@ const PostPage = () => {
         })
 
 
-        axios.get(`https://pedrofullstackblog-ec342730c6c5.herokuapp.com/comment/${id}`).then((res) => {
+        axios.get(`https://fullstacksever-e5f01fa1c438.herokuapp.com/comment/${id}`).then((res) => {
             if (res.data.length === 0) {
                 setEmptyComment(true)
             } else {
@@ -48,7 +48,7 @@ const PostPage = () => {
 
 
     useEffect(() => {
-        axios.get(`https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post/${id}`)
+        axios.get(`https://fullstacksever-e5f01fa1c438.herokuapp.com/post/${id}`)
             .then((res) => {
                 setPost(res.data);
 
@@ -68,7 +68,7 @@ const PostPage = () => {
 
 
     const handleComment = () => {
-        axios.post('https://pedrofullstackblog-ec342730c6c5.herokuapp.com/comment', { commentBody: input, postid: id }, {
+        axios.post('https://fullstacksever-e5f01fa1c438.herokuapp.com/comment', { commentBody: input, postid: id }, {
             headers: {
                 token: sessionStorage.getItem('key')
             }
@@ -85,7 +85,7 @@ const PostPage = () => {
 
 
     const deletePost = (id) => {
-        axios.delete(`https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post/delete/${id}`).then((res) => {
+        axios.delete(`https://fullstacksever-e5f01fa1c438.herokuapp.com/post/delete/${id}`).then((res) => {
             navigate('/')
         }).catch((error) => {
             console.log(error)
@@ -93,7 +93,7 @@ const PostPage = () => {
     }
 
     const deleteComment = (id) => {
-        axios.delete(`https://pedrofullstackblog-ec342730c6c5.herokuapp.com/comment/delete/${id}`, {
+        axios.delete(`https://fullstacksever-e5f01fa1c438.herokuapp.com/comment/delete/${id}`, {
             headers: {
                 token: sessionStorage.getItem('key')
             }

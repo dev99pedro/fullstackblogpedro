@@ -10,7 +10,7 @@ const UserPage = () => {
 
 
     useEffect(() => {
-        axios.get(`https://pedrofullstackblog-ec342730c6c5.herokuapp.com/post/username/${username}`).then((res) => {
+        axios.get(`https://fullstacksever-e5f01fa1c438.herokuapp.com/post/username/${username}`).then((res) => {
             setUserPageList(res.data)
         })
     }, [])
