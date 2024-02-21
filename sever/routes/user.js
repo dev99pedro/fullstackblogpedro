@@ -10,9 +10,9 @@ const { validateToken } = require('../middleware/Middleware.js')
 
 const db = mysql.createConnection({
     host: 'us-cluster-east-01.k8s.cleardb.net',
-    user: 'b18ef4e490c3f2',
-    password: '899deff7',
-    database: 'heroku_5e61a92f5fae40c'
+    user: 'b85b9c21555ed5',
+    password: '3e42f085',
+    database: 'heroku_fc18e33e6126ab6'
 })
 
 
