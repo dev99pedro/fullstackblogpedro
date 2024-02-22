@@ -16,7 +16,7 @@ postRouter.get('/', (req, res) => {
 })
 
 
-postRouter.post('/createpost', validateToken, (req, res) => {
+postRouter.post('/createpost',  (req, res) => {
     const title = req.body.title;
     const text = req.body.text;
     const img = req.body.img;

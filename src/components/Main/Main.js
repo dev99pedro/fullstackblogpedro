@@ -86,7 +86,10 @@ const Main = () => {
                 return (
                     <div className="main-page" key={index} >
                         <div className="container-img">
-                            <img className="img" onClick={() => navigatePost(element.id)} src={element.img}></img>
+                            <img className="img"  src={element.img}></img>
+                            <div className="container-btn">
+                                <button onClick={() => navigatePost(element.id)}>Check  Post</button>
+                            </div>
                         </div>
 
                         <div className="container-infos">
